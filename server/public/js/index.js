@@ -49,18 +49,20 @@
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	__webpack_require__(2);
 
-	/**
-	 * 
-	 * @authors Your Name (you@example.org)
-	 * @date    2019-07-07 17:27:59
-	 * @version $Id$
-	 */
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
+	                                                                                                                                                           * 
+	                                                                                                                                                           * @authors Your Name (you@example.org)
+	                                                                                                                                                           * @date    2019-07-07 17:27:59
+	                                                                                                                                                           * @version $Id$
+	                                                                                                                                                           */
+
+
 	var Test = function Test() {
 	    _classCallCheck(this, Test);
 
@@ -69,6 +71,35 @@
 
 	var test = new Test();
 	document.body.innerHTML = test.a;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	function test() {
+	    var a = 1222;
+	    for (var i = 0; i < 3; i++) {
+	        console.log(i);
+	    }
+	    console.log(i);
+
+	    var c = 1;
+	    // let c=2; //不能重复
+	}
+	test();
+	function last() {
+	    var PI = 3.14; //常量初始化赋值
+	    console.log(PI);
+	    // PI=4;
+	    var k = {
+	        a: 1
+	    };
+	    k.b = 2;
+	    console.log(k);
+	}
+	last();
 
 /***/ })
 /******/ ]);

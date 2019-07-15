@@ -4,6 +4,7 @@
  * @date    2019-07-07 17:27:59
  * @version $Id$
  */
+ import './clazz/lesson1'
 class Test{
     constructor(){
         this.a="hello,world";

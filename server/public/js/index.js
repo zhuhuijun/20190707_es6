@@ -62,12 +62,13 @@
 	                                                                                                                                                           * @version $Id$
 	                                                                                                                                                           */
 	//  import './clazz/lesson1';
+	//  import './clazz/lesson2';
 
 
 	var Test = function Test() {
-	  _classCallCheck(this, Test);
+	    _classCallCheck(this, Test);
 
-	  this.a = "hello,world";
+	    this.a = "hello,world";
 	};
 
 	var test = new Test();
@@ -79,150 +80,42 @@
 
 	'use strict';
 
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-	function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
-
 	{
-	    var a = void 0,
-	        b = void 0,
-	        rest = void 0;
-	    a = 1;
-	    b = 2;
+	    var regex = new RegExp('xyz', 'i');
+	    var regex2 = new RegExp(/xyz/i);
+	    var target = 'xyz123';
+	    console.log(regex.test('xyz123'), regex2.test(target));
 
-	    console.log(a, b);
+	    var regex3 = new RegExp(/xyz/ig, 'i');
+	    console.log(regex3.flags);
 	}
+	//shift+alt +up
+	//alt+up 上移
 	{
-	    var _a = void 0,
-	        _b = void 0,
-	        _rest = void 0;
-	    //解构赋值
-	    _a = 1;
-	    _b = 2;
-	    _rest = [3, 4, 5];
+	    var s = "bbb_bb_b";
+	    var a1 = /b+/g;
+	    var a2 = new RegExp('b+', 'y');
 
-	    console.log(_a, _b, _rest);
+	    console.log('one', a1.exec(s), a1.exec(s));
+	    console.log('two', a2.exec(s), a2.exec(s));
+	    console.log('a1:' + a1.sticky);
+	    console.log('a2:' + a2.sticky);
 	}
+
 	{
-	    var _a2 = void 0,
-	        _b2 = void 0;
-	    //对象解构赋值
-	    var _a$b = { a: 1, b: 2 };
-	    _a2 = _a$b.a;
-	    _b2 = _a$b.b;
+	    console.log('u-1', /^\uD83D/.test('\uD83D\uDCA2'));
+	    console.log('u-2', /^(?:\uD83D(?![\uDC00-\uDFFF]))/.test('\uD83D\uDCA2'));
 
-	    console.log(_a2, _b2);
-	}
-	{
-	    var _a3 = void 0,
-	        _b3 = void 0,
-	        c = void 0,
-	        _rest2 = void 0;
-	    var _ref = [1, 2];
-	    _a3 = _ref[0];
-	    _b3 = _ref[1];
-	    var _ref$ = _ref[2];
-	    c = _ref$ === undefined ? 3 : _ref$;
+	    console.log(/\u{61}/.test('a'));
+	    console.log(/a/.test('a'));
 
-	    console.log(_a3, _b3, c);
-	}
-	{
-	    var _a4 = 1;
-	    var _b4 = 2;
-	    var _ref2 = [_b4, _a4];
-	    _a4 = _ref2[0];
-	    _b4 = _ref2[1];
+	    console.log('\uD842\uDFB7');
+	    var _s = '𠮷𠮷';
+	    console.log('u', /^.$/.test(_s));
+	    console.log('u-2', /^(?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])$/.test(_s));
 
-	    console.log(_a4, _b4);
-	}
-	{
-	    var f = function f() {
-	        return [1, 2];
-	    };
-
-	    var _a5 = void 0,
-	        _b5 = void 0;
-
-	    var _f = f();
-
-	    var _f2 = _slicedToArray(_f, 2);
-
-	    _a5 = _f2[0];
-	    _b5 = _f2[1];
-
-	    console.log(_a5, _b5);
-	}
-	{
-	    var _f3 = function _f3() {
-	        return [1, 2, 3, 4, 5];
-	    };
-
-	    var _a6 = void 0,
-	        _b6 = void 0,
-	        _c = void 0;
-
-	    var _f4 = _f3();
-
-	    var _f5 = _slicedToArray(_f4, 4);
-
-	    _a6 = _f5[0];
-	    _b6 = _f5[3];
-
-	    console.log(_a6, _b6);
-	}
-	{
-	    var _f6 = function _f6() {
-	        return [1, 2, 3, 4, 5];
-	    };
-
-	    var _a7 = void 0,
-	        _b7 = void 0,
-	        _c2 = void 0;
-	    //不确定返回的数据的长度
-
-	    var _f7 = _f6();
-
-	    var _f8 = _toArray(_f7);
-
-	    _a7 = _f8[0];
-	    _b7 = _f8.slice(1);
-
-	    console.log(_a7, _b7);
-	}
-	//对象的解构赋值
-	{
-	    var o = { p: 42, q: true };
-	    var p = o.p,
-	        q = o.q;
-
-	    console.log(p, q);
-	}
-	//默认赋值
-	{
-	    var _a9 = { a: 3 },
-	        _a9$a = _a9.a,
-	        _a8 = _a9$a === undefined ? 10 : _a9$a,
-	        _a9$b = _a9.b,
-	        _b8 = _a9$b === undefined ? 5 : _a9$b;
-
-	    console.log(_a8, _b8);
-	}
-	//Demo
-	{
-	    var metaData = {
-	        title: 'test',
-	        test: [{ title: '111desv', desc: 'fsfsf' }, { title: '111desv3', desc: 'fsfsf3' }]
-	    };
-
-	    var esTitle = metaData.title,
-	        _metaData$test = _slicedToArray(metaData.test, 1),
-	        cnTitle = _metaData$test[0].title;
-
-	    var esTitle2 = metaData.title,
-	        esArr = metaData.test;
-
-	    console.log(esTitle, cnTitle);
-	    console.log(esTitle2, esArr);
+	    console.log('test', /𠮷{2}/.test(_s));
+	    console.log('test-u', /(?:\uD842\uDFB7){2}/.test(_s));
 	}
 
 /***/ })

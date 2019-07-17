@@ -6,7 +6,8 @@
  */
 //  import './clazz/lesson1';
 //  import './clazz/lesson2';
-import './clazz/lesson3';
+// import './clazz/lesson3';
+import './clazz/lesson4';
 class Test {
     constructor() {
         this.a = "hello,world";

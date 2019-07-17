@@ -33,6 +33,7 @@
     console.log(`\u{20BB7}`);
     let s='𠮷𠮷';
     console.log('u',/^.$/.test(s));
+    //包含（wynk）超过两个字节的
     console.log('u-2',/^.$/u.test(s));
 
 

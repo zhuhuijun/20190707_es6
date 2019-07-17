@@ -63,6 +63,7 @@
 	                                                                                                                                                           */
 	//  import './clazz/lesson1';
 	//  import './clazz/lesson2';
+	// import './clazz/lesson3';
 
 
 	var Test = function Test() {
@@ -81,41 +82,7 @@
 	'use strict';
 
 	{
-	    var regex = new RegExp('xyz', 'i');
-	    var regex2 = new RegExp(/xyz/i);
-	    var target = 'xyz123';
-	    console.log(regex.test('xyz123'), regex2.test(target));
-
-	    var regex3 = new RegExp(/xyz/ig, 'i');
-	    console.log(regex3.flags);
-	}
-	//shift+alt +up
-	//alt+up 上移
-	{
-	    var s = "bbb_bb_b";
-	    var a1 = /b+/g;
-	    var a2 = new RegExp('b+', 'y');
-
-	    console.log('one', a1.exec(s), a1.exec(s));
-	    console.log('two', a2.exec(s), a2.exec(s));
-	    console.log('a1:' + a1.sticky);
-	    console.log('a2:' + a2.sticky);
-	}
-
-	{
-	    console.log('u-1', /^\uD83D/.test('\uD83D\uDCA2'));
-	    console.log('u-2', /^(?:\uD83D(?![\uDC00-\uDFFF]))/.test('\uD83D\uDCA2'));
-
-	    console.log(/\u{61}/.test('a'));
-	    console.log(/a/.test('a'));
-
-	    console.log('\uD842\uDFB7');
-	    var _s = '𠮷𠮷';
-	    console.log('u', /^.$/.test(_s));
-	    console.log('u-2', /^(?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])$/.test(_s));
-
-	    console.log('test', /𠮷{2}/.test(_s));
-	    console.log('test-u', /(?:\uD842\uDFB7){2}/.test(_s));
+	    console.log('a', 'a');
 	}
 
 /***/ })

@@ -8,3 +8,8 @@
 ### 6、cnpm install babel-preset-es2016 --save-dev
 ### 7、cnpm install gulp-sequence --save-dev
 ### 8、cnpm install connect-livereload --save-dev
+### babel-polyfill
+
+```
+cnpm install babel-polyfill --save-dev
+```

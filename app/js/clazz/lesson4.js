@@ -41,3 +41,42 @@
         console.log("es6:%s",code);
     }
 }
+{
+    let str="string";
+    console.log('includes',str.includes('c'));
+    console.log('startsWith',str.startsWith('str'));
+    console.log('endsWith',str.endsWith('ing'));
+    
+}
+{
+    let str="abc";
+    console.log(str.repeat(2));
+    
+}
+//模板字符串
+{
+    let name="list"
+    let info="hello,world"
+    let m=`i am ${name},this is ${info}`
+    console.log(m);
+    
+}
+//流白
+{
+    console.log('1'.padStart(2,'0'));
+    console.log('1'.padEnd(2,'0'));
+    
+}
+//标签
+{
+    let users={
+        name:'title',
+        info:'hello,world'
+    };
+    console.log(abc`i am ${users.name},this is ${users.info}`);
+    
+    function abc(s,v1,v2){
+        console.log(s,v1,v2);
+        return s+v1+v2;
+    }
+}

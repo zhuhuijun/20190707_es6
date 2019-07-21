@@ -64,12 +64,14 @@
 	//  import './clazz/lesson1';
 	//  import './clazz/lesson2';
 	// import './clazz/lesson3';
+	// import './clazz/lesson4';
+	//  import './clazz/lesson5';
 
 
 	var Test = function Test() {
-	    _classCallCheck(this, Test);
+	  _classCallCheck(this, Test);
 
-	    this.a = "hello,world";
+	  this.a = "hello,world";
 	};
 
 	var test = new Test();
@@ -82,7 +84,26 @@
 	'use strict';
 
 	{
-	    console.log('a', 'a');
+	    var arr = Array.of(3, 4, 5, 6, 2323, 332);
+	    console.log('arr=', arr);
+
+	    var empty = Array.of();
+	    console.log('empty', empty);
+	}
+	//Array.from //集合=>数组
+	{
+	    var p = document.querySelectorAll('p');
+	    var pArr = Array.from(p);
+	    pArr.forEach(function (o) {
+	        console.log(o.textContent);
+	    });
+	    console.log(Array.from([1, 3, 5], function (o) {
+	        return o * 2;
+	    }));
+	}
+	{
+	    console.log('fill-7', [1, 'a', undefined].fill(7));
+	    console.log('fill-7', [1, 'a', undefined, 5, '34'].fill('nn', 1, 3));
 	}
 
 /***/ })

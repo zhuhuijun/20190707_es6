@@ -13,3 +13,10 @@
 ```
 cnpm install babel-polyfill --save-dev
 ```
+
+```
+    //ctrl+enter
+    //shift + ctrl +enter
+    //shift+alt +up
+    //alt+up 上移
+```

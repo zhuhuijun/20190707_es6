@@ -1,16 +1,13 @@
-/**
- * 
- * @authors Your Name (you@example.org)
- * @date    2019-07-07 17:27:59
- * @version $Id$
- */
 //  import './clazz/lesson1';
 //  import './clazz/lesson2';
 // import './clazz/lesson3';
 // import './clazz/lesson4';
 //  import './clazz/lesson5';
 import 'babel-polyfill';
-import './clazz/lesson6';
+// import './clazz/lesson6';
+// import './clazz/lesson7';
+// import './clazz/lesson8';
+import './clazz/lesson9';
 class Test {
     constructor() {
         this.a = "hello,world";

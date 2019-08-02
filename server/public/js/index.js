@@ -9702,6 +9702,14 @@
 	            }
 	        }
 	    }
+
+	    Object.getOwnPropertySymbols(obj).forEach(function (item) {
+	        console.log(item, obj[item]);
+	    });
+	    //keys
+	    Reflect.ownKeys(obj).forEach(function (item) {
+	        console.log('ownKeys:', item, obj[item]);
+	    });
 	}
 
 /***/ })

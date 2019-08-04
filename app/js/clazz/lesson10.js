@@ -85,6 +85,7 @@
     console.log('weakMap', weakMap);
     console.log('get:', weakMap.get(o));
 }
+//map and arr
 {
     let map = new Map()
     let arr = [];
@@ -92,7 +93,37 @@
     map.set('a', 1)
     arr.push({ t: 1 })
     console.log('map-arr', map, arr);
+    //查
+    let isexit = map.has('t');
+    let isha = arr.find((item) => item.t);
+    console.log('has', isexit, isha);
+    //改变
+    map.set('t', 2);
+    arr.forEach((item) => item.t ? item.t = 2 : '');
+    console.log('update', map, arr);
+    //刪除
+    map.delete('t')
+    let index = arr.findIndex(item => item.t);
+    arr.splice(index, 1);
+    console.log('delete', map, arr);
 
 }
-
+//set and arr
+{
+    let set = new Set();
+    let arr = [];
+    let item = { t: 1 };
+    set.add(item);
+    arr.push(item);
+    console.log('set-array-add', set, arr);
+    //查找
+    let isexit = set.has(item);
+    let isha = arr.find((item) => item.t);
+    console.log('has', isexit, isha);
+    //改变
+    set.forEach(item => item.t ? item.t = 3 : '');
+    arr.forEach(item => item.t ? item.t = 3 : '');
+    console.log('modify',set,arr);
+    
+}
 

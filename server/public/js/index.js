@@ -9679,12 +9679,20 @@
 	            } else {
 	                return target[key];
 	            }
+	        },
+	        has: function has(target, key) {
+	            if ('name' === key) {
+	                return target[key];
+	            } else {
+	                return false;
+	            }
 	        }
 	    });
 	    console.log('get', monitor.time);
 	    monitor.name = 'aa';
 	    monitor._r = 789;
 	    console.log('set', monitor);
+	    console.log('has', 'name' in monitor, 'time' in monitor);
 	}
 
 /***/ })

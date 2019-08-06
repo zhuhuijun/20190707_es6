@@ -11,7 +11,8 @@ import 'babel-polyfill';
 // import './clazz/lesson10';
 // import './clazz/lesson1002';
 // import './clazz/lesson11';
-import './clazz/lesson12';
+// import './clazz/lesson12';
+import './clazz/lesson13';
 class Test {
     constructor() {
         this.a = "hello,world";

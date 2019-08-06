@@ -58,9 +58,66 @@
             }
         })
     };
-    ajax(2).then(function () {
+    ajax(6).then(function () {
         console.log('this is', 6);
     }).catch(function (err) {
-        console.error('catch',err);
+        console.error('catch', err);
     });
+}
+
+
+{
+    //所有图片加载完再增加到页面
+    function LoadImage(src) {
+        return new Promise((resolve, reject) => {
+            let img = document.createElement('img');
+            img.src = src;
+            img.onload = function () {
+                resolve(img);
+            };
+            img.onerror = function (err) {
+                reject(err);
+            }
+        });
+    }
+
+    function ShowImages(imges) {
+        imges.forEach(element => {
+            document.body.appendChild(element);
+        });
+    }
+
+    Promise.all([
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'),
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'),
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg')
+    ]).then(ShowImages);
+}
+
+
+{
+    function LoadImage(src) {
+        return new Promise((resolve, reject) => {
+            let img = document.createElement('img');
+            img.src = src;
+            img.onload = function () {
+                resolve(img);
+            };
+            img.onerror = function (err) {
+                reject(err);
+            }
+        });
+    }
+
+    function ShowImages(imges) {
+        let p = document.createElement('p');
+        p.appendChild(imges);
+        document.body.appendChild(p);
+    }
+
+    Promise.race([
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'),
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'),
+        LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg')
+    ]).then(ShowImages);
 }

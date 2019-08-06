@@ -71,6 +71,7 @@
 	// import './clazz/lesson1002';
 	// import './clazz/lesson11';
 	// import './clazz/lesson12';
+	// import './clazz/lesson13';
 
 
 	var Test = function Test() {
@@ -9663,116 +9664,66 @@
 
 	'use strict';
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	{
-	    var ajax = function ajax(callback) {
-	        console.log('doing');
-	        setTimeout(function () {
-	            callback && callback.call();
-	        }, 1000);
-	    };
-	    ajax(function () {
-	        console.log('timeout1');
-	    });
-	}
-	//promise
-	{
-	    var _ajax = function _ajax() {
-	        console.log('doing...');
-	        return new Promise(function (resolve, reject) {
-	            setTimeout(function () {
-	                resolve();
-	            }, 1000);
-	        });
-	    };
-	    _ajax().then(function () {
-	        console.log('promise', 'timeout2');
-	    });
+	    var arr = ['hello', 'world'];
+	    var map = arr[Symbol.iterator]();
+	    console.log(map.next());
+	    console.log(map.next());
+	    console.log(map.next());
 	}
 
 	{
-	    var _ajax2 = function _ajax2() {
-	        console.log('doing...');
-	        return new Promise(function (resolve, reject) {
-	            setTimeout(function () {
-	                resolve();
-	            }, 1000);
-	        });
-	    };
-	    _ajax2().then(function () {
-	        return new Promise(function (resolve, reject) {
-	            setTimeout(function () {
-	                console.log('this is 2');
-	                resolve();
-	            }, 2000);
-	        });
-	    }).then(function () {
-	        console.log('timeout3');
-	    });
-	}
-
-	{
-	    var _ajax3 = function _ajax3(num) {
-	        console.log('执行4');
-	        return new Promise(function (resolve, reject) {
-	            if (num > 5) {
-	                resolve();
-	            } else {
-	                throw new Error('出错了,the num must bigger than five');
+	    var obj = _defineProperty({
+	        start: [1, 3, 2],
+	        end: [7, 9, 8]
+	    }, Symbol.iterator, function () {
+	        var self = this;
+	        var index = 0;
+	        var arr = self.start.concat(self.end);
+	        var len = arr.length;
+	        return {
+	            next: function next() {
+	                if (index < len) {
+	                    return {
+	                        value: arr[index++],
+	                        done: false
+	                    };
+	                } else {
+	                    return {
+	                        value: arr[index++],
+	                        done: true
+	                    };
+	                }
 	            }
-	        });
-	    };
-	    _ajax3(6).then(function () {
-	        console.log('this is', 6);
-	    }).catch(function (err) {
-	        console.error('catch', err);
+	        };
 	    });
-	}
 
-	{
-	    //所有图片加载完再增加到页面
-	    var LoadImage = function LoadImage(src) {
-	        return new Promise(function (resolve, reject) {
-	            var img = document.createElement('img');
-	            img.src = src;
-	            img.onload = function () {
-	                resolve(img);
-	            };
-	            img.onerror = function (err) {
-	                reject(err);
-	            };
-	        });
-	    };
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
 
-	    var ShowImages = function ShowImages(imges) {
-	        imges.forEach(function (element) {
-	            document.body.appendChild(element);
-	        });
-	    };
+	    try {
+	        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	            var key = _step.value;
 
-	    Promise.all([LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'), LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'), LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg')]).then(ShowImages);
-	}
-
-	{
-	    var _LoadImage = function _LoadImage(src) {
-	        return new Promise(function (resolve, reject) {
-	            var img = document.createElement('img');
-	            img.src = src;
-	            img.onload = function () {
-	                resolve(img);
-	            };
-	            img.onerror = function (err) {
-	                reject(err);
-	            };
-	        });
-	    };
-
-	    var _ShowImages = function _ShowImages(imges) {
-	        var p = document.createElement('p');
-	        p.appendChild(imges);
-	        document.body.appendChild(p);
-	    };
-
-	    Promise.race([_LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'), _LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg'), _LoadImage('http://h.hiphotos.baidu.com/lvpics/w=600/sign=5dc3621e19d5ad6eaaf967eab1c939a3/0b55b319ebc4b745cc71eecccdfc1e178b821506.jpg')]).then(_ShowImages);
+	            console.log(key);
+	        }
+	    } catch (err) {
+	        _didIteratorError = true;
+	        _iteratorError = err;
+	    } finally {
+	        try {
+	            if (!_iteratorNormalCompletion && _iterator.return) {
+	                _iterator.return();
+	            }
+	        } finally {
+	            if (_didIteratorError) {
+	                throw _iteratorError;
+	            }
+	        }
+	    }
 	}
 
 /***/ })

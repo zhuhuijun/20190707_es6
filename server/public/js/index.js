@@ -69,6 +69,7 @@
 	// import './clazz/lesson9';
 	// import './clazz/lesson10';
 	// import './clazz/lesson1002';
+	// import './clazz/lesson11';
 
 
 	var Test = function Test() {
@@ -9661,38 +9662,151 @@
 
 	'use strict';
 
-	//proxy and Reflect 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 	{
-	    var obj = {
-	        time: '2019-03-11',
-	        name: 'net',
-	        _r: 123
+	    //基本定义和生成实例
+	    var Parent = function Parent() {
+	        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+
+	        _classCallCheck(this, Parent);
+
+	        this.name = name;
 	    };
-	    var monitor = new Proxy(obj, {
-	        //拦截属性的读取
-	        get: function get(target, key) {
-	            return target[key].replace('2019', '2018');
-	        },
-	        set: function set(target, key, val) {
-	            if ('name' === key) {
-	                return target[key] = val;
-	            } else {
-	                return target[key];
-	            }
-	        },
-	        has: function has(target, key) {
-	            if ('name' === key) {
-	                return target[key];
-	            } else {
-	                return false;
-	            }
+
+	    var vp = new Parent('v');
+	    console.log('vp', vp);
+	}
+	//继承
+	{
+	    var _Parent = function _Parent() {
+	        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+
+	        _classCallCheck(this, _Parent);
+
+	        this.name = name;
+	    };
+
+	    var Child = function (_Parent2) {
+	        _inherits(Child, _Parent2);
+
+	        function Child() {
+	            _classCallCheck(this, Child);
+
+	            return _possibleConstructorReturn(this, (Child.__proto__ || Object.getPrototypeOf(Child)).apply(this, arguments));
 	        }
-	    });
-	    console.log('get', monitor.time);
-	    monitor.name = 'aa';
-	    monitor._r = 789;
-	    console.log('set', monitor);
-	    console.log('has', 'name' in monitor, 'time' in monitor);
+
+	        return Child;
+	    }(_Parent);
+
+	    var child = new Child();
+	    console.log('child', child);
+	    var child1 = new Child('child');
+	    console.log('child1', child1);
+	}
+	//继承
+	{
+	    var _Parent3 = function _Parent3() {
+	        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+
+	        _classCallCheck(this, _Parent3);
+
+	        this.name = name;
+	    };
+
+	    var _Child = function (_Parent4) {
+	        _inherits(_Child, _Parent4);
+
+	        function _Child() {
+	            var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'child';
+
+	            _classCallCheck(this, _Child);
+
+	            var _this2 = _possibleConstructorReturn(this, (_Child.__proto__ || Object.getPrototypeOf(_Child)).call(this, name));
+
+	            _this2.type = name;
+	            return _this2;
+	        }
+
+	        return _Child;
+	    }(_Parent3);
+
+	    var _child = new _Child();
+	    console.log('child', _child);
+	    var _child2 = new _Child('child1');
+	    console.log('child1', _child2);
+	}
+	//getter and setter
+	{
+	    var _Parent5 = function () {
+	        function _Parent5() {
+	            var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+
+	            _classCallCheck(this, _Parent5);
+
+	            this.name = name;
+	        }
+
+	        _createClass(_Parent5, [{
+	            key: 'longName',
+	            get: function get() {
+	                return 'mk' + this.name;
+	            },
+	            set: function set(val) {
+	                this.name = val;
+	            }
+	        }]);
+
+	        return _Parent5;
+	    }();
+	    //getter
+
+
+	    var v = new _Parent5();
+	    console.log('getter', v.longName);
+	    //setter
+	    v.longName = 'hello,word';
+	    console.log('setter', v.longName);
+	}
+	//类的静态方法
+	{
+	    var _Parent6 = function () {
+	        function _Parent6() {
+	            var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+
+	            _classCallCheck(this, _Parent6);
+
+	            this.name = name;
+	        }
+
+	        _createClass(_Parent6, [{
+	            key: 'longName',
+	            get: function get() {
+	                return 'mk' + this.name;
+	            },
+	            set: function set(val) {
+	                this.name = val;
+	            }
+	        }], [{
+	            key: 'tell',
+	            value: function tell(name) {
+	                console.log('this is tell:' + name);
+	            }
+	        }]);
+
+	        return _Parent6;
+	    }();
+	    //静态属性
+
+
+	    _Parent6.mytype = 'parent';
+	    _Parent6.tell('hell');
 	}
 
 /***/ })

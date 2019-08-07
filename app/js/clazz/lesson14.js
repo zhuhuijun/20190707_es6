@@ -35,7 +35,6 @@
 
     for (let key of obj) {
         console.log(key);
-
     }
 
 }

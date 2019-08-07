@@ -20,5 +20,5 @@ class Test {
         this.a = "hello,world";
     }
 }
-var test = new Test();
-document.body.innerHTML = test.a;
+// var test = new Test();
+// document.body.innerHTML = test.a;

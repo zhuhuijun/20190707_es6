@@ -80,9 +80,8 @@
 
 	    this.a = "hello,world";
 	};
-
-	var test = new Test();
-	document.body.innerHTML = test.a;
+	// var test = new Test();
+	// document.body.innerHTML = test.a;
 
 /***/ }),
 /* 2 */
@@ -9792,9 +9791,6 @@
 	    console.log(status.next());
 	    console.log(status.next());
 	    console.log(status.next());
-	    console.log(status.next());
-	    console.log(status.next());
-	    console.log(status.next());
 	}
 	{
 	    //状态机函数2 //需要babel插件
@@ -9810,6 +9806,88 @@
 	    // console.log(status.next());
 	    // console.log(status.next());
 
+	}
+
+	{
+
+	    var draw = function draw(count) {
+	        console.info('\u8FD8\u6709' + count);
+	    };
+	    var residue = /*#__PURE__*/regeneratorRuntime.mark(function residue(count) {
+	        return regeneratorRuntime.wrap(function residue$(_context4) {
+	            while (1) {
+	                switch (_context4.prev = _context4.next) {
+	                    case 0:
+	                        if (!(count > 0)) {
+	                            _context4.next = 6;
+	                            break;
+	                        }
+
+	                        count--;
+	                        _context4.next = 4;
+	                        return draw(count);
+
+	                    case 4:
+	                        _context4.next = 0;
+	                        break;
+
+	                    case 6:
+	                    case 'end':
+	                        return _context4.stop();
+	                }
+	            }
+	        }, residue, this);
+	    });
+	    var start = residue(5);
+
+	    var divE = document.createElement('button');
+	    divE.id = 'start';
+	    divE.textContent = '开始';
+	    document.body.appendChild(divE);
+	    //事件绑定
+	    document.getElementById('start').addEventListener('click', function () {
+	        start.next();
+	    }, false);
+	}
+
+	{
+	    //长轮询
+	    var ajax = /*#__PURE__*/regeneratorRuntime.mark(function ajax() {
+	        return regeneratorRuntime.wrap(function ajax$(_context5) {
+	            while (1) {
+	                switch (_context5.prev = _context5.next) {
+	                    case 0:
+	                        _context5.next = 2;
+	                        return new Promise(function (resolve, reject) {
+	                            setTimeout(function () {
+	                                resolve({ code: 4 });
+	                            }, 200);
+	                        });
+
+	                    case 2:
+	                    case 'end':
+	                        return _context5.stop();
+	                }
+	            }
+	        }, ajax, this);
+	    });
+
+	    var pull = function pull() {
+	        var generator = ajax();
+	        var step = generator.next();
+	        step.value.then(function (d) {
+	            if (d.code != 0) {
+	                setTimeout(function () {
+	                    console.log('waiting...');
+	                    pull();
+	                }, 1000);
+	            } else {
+	                console.info(d.code);
+	            }
+	        });
+	    };
+	    //调用
+	    pull();
 	}
 
 /***/ }),

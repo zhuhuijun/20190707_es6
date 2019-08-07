@@ -26,3 +26,43 @@ import { log } from "util";
     }
 
 }
+
+
+{
+    //状态机函数
+    let state = function* () {
+        while (1) {
+            yield 'a';
+            yield 'b';
+            yield 'c';
+        }
+    };
+    let status = state();
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+
+}
+{
+    //状态机函数2 //需要babel插件
+    // let state = async function () {
+    //     while (1) {
+    //         await 'a';
+    //         await 'b';
+    //         await 'c';
+    //     }
+    // };
+    // let status = state();
+    // console.log(status.next());
+    // console.log(status.next());
+    // console.log(status.next());
+
+}

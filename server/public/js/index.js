@@ -9749,6 +9749,69 @@
 	    }
 	}
 
+	{
+	    //状态机函数
+	    var state = /*#__PURE__*/regeneratorRuntime.mark(function state() {
+	        return regeneratorRuntime.wrap(function state$(_context3) {
+	            while (1) {
+	                switch (_context3.prev = _context3.next) {
+	                    case 0:
+	                        if (false) {
+	                            _context3.next = 9;
+	                            break;
+	                        }
+
+	                        _context3.next = 3;
+	                        return 'a';
+
+	                    case 3:
+	                        _context3.next = 5;
+	                        return 'b';
+
+	                    case 5:
+	                        _context3.next = 7;
+	                        return 'c';
+
+	                    case 7:
+	                        _context3.next = 0;
+	                        break;
+
+	                    case 9:
+	                    case 'end':
+	                        return _context3.stop();
+	                }
+	            }
+	        }, state, this);
+	    });
+	    var status = state();
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	    console.log(status.next());
+	}
+	{
+	    //状态机函数2 //需要babel插件
+	    // let state = async function () {
+	    //     while (1) {
+	    //         await 'a';
+	    //         await 'b';
+	    //         await 'c';
+	    //     }
+	    // };
+	    // let status = state();
+	    // console.log(status.next());
+	    // console.log(status.next());
+	    // console.log(status.next());
+
+	}
+
 /***/ }),
 /* 335 */
 /***/ (function(module, exports, __webpack_require__) {

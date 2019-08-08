@@ -55,7 +55,17 @@
 
 	__webpack_require__(2);
 
-	__webpack_require__(334);
+	var _lesson = __webpack_require__(334);
+
+	var lesson = _interopRequireWildcard(_lesson);
+
+	var _lesson2 = __webpack_require__(335);
+
+	var _lesson3 = _interopRequireDefault(_lesson2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } //  import './clazz/lesson1';
 	//  import './clazz/lesson2';
@@ -74,7 +84,16 @@
 	// import './clazz/lesson13';
 	// import './clazz/lesson14';
 	// import './clazz/lesson15';
+	// import './clazz/lesson16';
+	// import './clazz/lesson17';
+	// import { A, test, Hello } from './clazz/lesson17';
+	// console.log(A, test, Hello);
+	// import { A } from './clazz/lesson17';
+	//全部
 
+
+	console.log(lesson);
+	console.log(_lesson3.default);
 
 	var Test = function Test() {
 	    _classCallCheck(this, Test);
@@ -9665,113 +9684,75 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	exports.test = test;
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var A = exports.A = 123;
+	function test() {
+	    console.log('this is log');
+	}
+
+	var Hello = exports.Hello = function () {
+	    function Hello() {
+	        _classCallCheck(this, Hello);
+	    }
+
+	    _createClass(Hello, [{
+	        key: 'test',
+	        value: function test() {
+	            console.log('this is hello log');
+	        }
+	    }]);
+
+	    return Hello;
+	}();
+
+/***/ }),
+/* 335 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-	    var desc = {};
-	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-	        desc[key] = descriptor[key];
-	    });
-	    desc.enumerable = !!desc.enumerable;
-	    desc.configurable = !!desc.configurable;
+	var A = 456;
+	var test = function test() {
+	    console.log('test');
+	};
 
-	    if ('value' in desc || desc.initializer) {
-	        desc.writable = true;
+	var BHello = function () {
+	    function BHello() {
+	        _classCallCheck(this, BHello);
 	    }
 
-	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-	        return decorator(target, property, desc) || desc;
-	    }, desc);
-
-	    if (context && desc.initializer !== void 0) {
-	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-	        desc.initializer = undefined;
-	    }
-
-	    if (desc.initializer === void 0) {
-	        Object['define' + 'Property'](target, property, desc);
-	        desc = null;
-	    }
-
-	    return desc;
-	}
-
-	{
-	    var _desc, _value, _class;
-
-	    //修饰器是一个函数
-	    var readonly = function readonly(target, name, descriptor) {
-	        descriptor.writable = false;
-	        return descriptor;
-	    };
-
-	    var TestDescrip = (_class = function () {
-	        function TestDescrip() {
-	            _classCallCheck(this, TestDescrip);
+	    _createClass(BHello, [{
+	        key: 'test',
+	        value: function test() {
+	            console.log('this is B');
 	        }
+	    }]);
 
-	        _createClass(TestDescrip, [{
-	            key: 'mytime',
-	            value: function mytime() {
-	                return '2019-08-05';
-	            }
-	        }]);
+	    return BHello;
+	}();
 
-	        return TestDescrip;
-	    }(), (_applyDecoratedDescriptor(_class.prototype, 'mytime', [readonly], Object.getOwnPropertyDescriptor(_class.prototype, 'mytime'), _class.prototype)), _class);
-
-
-	    var t = new TestDescrip();
-	    // t.mytime = function () {
-	    //     console.log('RESET mytime');
-	    // };
-	    console.log('time:', t.mytime());
-	}
-
-	{
-	    var _dec, _dec2, _desc2, _value2, _class2;
-
-	    var mylog = function mylog(type) {
-	        return function (target, name, descriptor) {
-	            var src_method = descriptor.value;
-	            descriptor.value = function () {
-	                for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
-	                    arg[_key] = arguments[_key];
-	                }
-
-	                src_method.apply(target, arg);
-	                console.info('log...' + type);
-	            };
-	        };
-	    };
-
-	    var AD = (_dec = mylog('show'), _dec2 = mylog('click'), (_class2 = function () {
-	        function AD() {
-	            _classCallCheck(this, AD);
-	        }
-
-	        _createClass(AD, [{
-	            key: 'show',
-	            value: function show() {
-	                console.info('ad show');
-	            }
-	        }, {
-	            key: 'click',
-	            value: function click() {
-	                console.info('ad show');
-	            }
-	        }]);
-
-	        return AD;
-	    }(), (_applyDecoratedDescriptor(_class2.prototype, 'show', [_dec], Object.getOwnPropertyDescriptor(_class2.prototype, 'show'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'click', [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, 'click'), _class2.prototype)), _class2));
-
-
-	    var ad = new AD();
-	    ad.show();
-	    ad.click();
-	}
+	exports.default = {
+	    A: A,
+	    test: test,
+	    BHello: BHello
+	};
 
 /***/ })
 /******/ ]);

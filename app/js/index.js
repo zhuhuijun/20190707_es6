@@ -15,7 +15,17 @@ import 'babel-polyfill';
 // import './clazz/lesson13';
 // import './clazz/lesson14';
 // import './clazz/lesson15';
-import './clazz/lesson16';
+// import './clazz/lesson16';
+// import './clazz/lesson17';
+// import { A, test, Hello } from './clazz/lesson17';
+// console.log(A, test, Hello);
+// import { A } from './clazz/lesson17';
+//全部
+import * as lesson from './clazz/lesson17';
+import lesson18 from './clazz/lesson18';
+console.log(lesson);
+console.log(lesson18);
+
 class Test {
     constructor() {
         this.a = "hello,world";

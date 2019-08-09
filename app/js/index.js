@@ -21,15 +21,16 @@ import 'babel-polyfill';
 // console.log(A, test, Hello);
 // import { A } from './clazz/lesson17';
 //全部
-import * as lesson from './clazz/lesson17';
-import lesson18 from './clazz/lesson18';
-console.log(lesson);
-console.log(lesson18);
+// import * as lesson from './clazz/lesson17';
+// import lesson18 from './clazz/lesson18';
+// console.log(lesson);
+// console.log(lesson18);
 
-class Test {
-    constructor() {
-        this.a = "hello,world";
-    }
-}
+// class Test {
+//     constructor() {
+//         this.a = "hello,world";
+//     }
+// }
 // var test = new Test();
 // document.body.innerHTML = test.a;
+import Lottery from './lottery';

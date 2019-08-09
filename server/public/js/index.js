@@ -55,53 +55,11 @@
 
 	__webpack_require__(2);
 
-	var _lesson = __webpack_require__(334);
+	var _lottery = __webpack_require__(334);
 
-	var lesson = _interopRequireWildcard(_lesson);
-
-	var _lesson2 = __webpack_require__(335);
-
-	var _lesson3 = _interopRequireDefault(_lesson2);
+	var _lottery2 = _interopRequireDefault(_lottery);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } //  import './clazz/lesson1';
-	//  import './clazz/lesson2';
-	// import './clazz/lesson3';
-	// import './clazz/lesson4';
-	//  import './clazz/lesson5';
-
-	// import './clazz/lesson6';
-	// import './clazz/lesson7';
-	// import './clazz/lesson8';
-	// import './clazz/lesson9';
-	// import './clazz/lesson10';
-	// import './clazz/lesson1002';
-	// import './clazz/lesson11';
-	// import './clazz/lesson12';
-	// import './clazz/lesson13';
-	// import './clazz/lesson14';
-	// import './clazz/lesson15';
-	// import './clazz/lesson16';
-	// import './clazz/lesson17';
-	// import { A, test, Hello } from './clazz/lesson17';
-	// console.log(A, test, Hello);
-	// import { A } from './clazz/lesson17';
-	//全部
-
-
-	console.log(lesson);
-	console.log(_lesson3.default);
-
-	var Test = function Test() {
-	    _classCallCheck(this, Test);
-
-	    this.a = "hello,world";
-	};
-	// var test = new Test();
-	// document.body.innerHTML = test.a;
 
 /***/ }),
 /* 2 */
@@ -9680,39 +9638,17 @@
 
 /***/ }),
 /* 334 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
+	__webpack_require__(335);
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	__webpack_require__(336);
 
-	exports.test = test;
+	__webpack_require__(337);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var A = exports.A = 123;
-	function test() {
-	    console.log('this is log');
-	}
-
-	var Hello = exports.Hello = function () {
-	    function Hello() {
-	        _classCallCheck(this, Hello);
-	    }
-
-	    _createClass(Hello, [{
-	        key: 'test',
-	        value: function test() {
-	            console.log('this is hello log');
-	        }
-	    }]);
-
-	    return Hello;
-	}();
+	__webpack_require__(338);
 
 /***/ }),
 /* 335 */
@@ -9728,31 +9664,170 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var A = 456;
-	var test = function test() {
-	    console.log('test');
-	};
-
-	var BHello = function () {
-	    function BHello() {
-	        _classCallCheck(this, BHello);
+	var Timer = function () {
+	    function Timer() {
+	        _classCallCheck(this, Timer);
 	    }
 
-	    _createClass(BHello, [{
-	        key: 'test',
-	        value: function test() {
-	            console.log('this is B');
+	    _createClass(Timer, [{
+	        key: 'countdown',
+	        value: function countdown(end, update, handle) {
+	            var now = new Date().getTime();
+	            var self = this;
+	            if (now - end) {
+	                handle.call(self);
+	            } else {
+	                var last_time = end - now;
+	                var px_d = 1000 * 60 * 60 * 24;
+	                var px_h = 1000 * 60 * 60;
+	                var px_m = 1000 * 60;
+	                var px_s = 1000;
+	                var d = Math.floor(last_time / px_d);
+	                var h = Math.floor((last_time - px_d * d) / px_h);
+	                var m = Math.floor((last_time - px_d * d - px_h * h) / px_m);
+	                var s = Math.floor((last_time - px_d * d - px_h * h - m * px_m) / px_s);
+	                var r = [];
+	                if (d > 0) {
+	                    r.push('<em>' + d + '</em>\u5929');
+	                }
+	                if (r.length || h > 0) {
+	                    r.push('<em>' + h + '</em>\u65F6');
+	                }
+	                if (r.length || m > 0) {
+	                    r.push('<em>' + m + '</em>\u5206');
+	                }
+	                if (r.length || s > 0) {
+	                    r.push('<em>' + s + '</em>\u79D2');
+	                }
+	                self.last_time = r.join('');
+	                update.call(self, r.join(''));
+	                setTimeout(function () {
+	                    self.countdown(end, update, handle);
+	                }, 1000);
+	            }
 	        }
 	    }]);
 
-	    return BHello;
+	    return Timer;
 	}();
 
-	exports.default = {
-	    A: A,
-	    test: test,
-	    BHello: BHello
-	};
+	exports.default = Timer;
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"jquery\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Interface = function () {
+	    function Interface() {
+	        _classCallCheck(this, Interface);
+	    }
+
+	    _createClass(Interface, [{
+	        key: 'getOmit',
+
+	        /**
+	         * 获得遗漏数据
+	         * @param {string} issue [当前期号]
+	         */
+	        value: function getOmit(issue) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/omit',
+	                    data: {
+	                        issue: issue
+	                    },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        self.setOmit(res.data);
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	        /**
+	         * 
+	         */
+
+	    }, {
+	        key: 'getOpenCode',
+	        value: function getOpenCode(issuse) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/opencode',
+	                    data: { issuse: issuse },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        self.setOpenCode(res.data);
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	        /**
+	         * 获得状态
+	         * @param {int} issuse 期号
+	         */
+
+	    }, {
+	        key: 'getState',
+	        value: function getState(issuse) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/state',
+	                    data: { issuse: issuse },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	    }]);
+
+	    return Interface;
+	}();
+
+	exports.default = Interface;
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports) {
+
+	"use strict";
 
 /***/ })
 /******/ ]);

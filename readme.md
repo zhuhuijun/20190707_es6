@@ -12,6 +12,7 @@
 
 ```
 cnpm install babel-polyfill --save-dev
+cnpm install babel-plugin-transform-decorators-legacy --save-dev
 ```
 
 ```

@@ -55,33 +55,11 @@
 
 	__webpack_require__(2);
 
-	__webpack_require__(334);
+	var _lottery = __webpack_require__(334);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } //  import './clazz/lesson1';
-	//  import './clazz/lesson2';
-	// import './clazz/lesson3';
-	// import './clazz/lesson4';
-	//  import './clazz/lesson5';
+	var _lottery2 = _interopRequireDefault(_lottery);
 
-	// import './clazz/lesson6';
-	// import './clazz/lesson7';
-	// import './clazz/lesson8';
-	// import './clazz/lesson9';
-	// import './clazz/lesson10';
-	// import './clazz/lesson1002';
-	// import './clazz/lesson11';
-	// import './clazz/lesson12';
-	// import './clazz/lesson13';
-
-
-	var Test = function Test() {
-	    _classCallCheck(this, Test);
-
-	    this.a = "hello,world";
-	};
-
-	var test = new Test();
-	document.body.innerHTML = test.a;
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 /* 2 */
@@ -9660,99 +9638,603 @@
 
 /***/ }),
 /* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(335);
+
+	__webpack_require__(336);
+
+	__webpack_require__(337);
+
+	__webpack_require__(338);
+
+/***/ }),
+/* 335 */
 /***/ (function(module, exports) {
 
 	'use strict';
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
-	{
-	    var arr = ['hello', 'world'];
-	    var map = arr[Symbol.iterator]();
-	    console.log(map.next());
-	    console.log(map.next());
-	    console.log(map.next());
-	}
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	{
-	    var obj = _defineProperty({
-	        start: [1, 3, 2],
-	        end: [7, 9, 8]
-	    }, Symbol.iterator, function () {
-	        var self = this;
-	        var index = 0;
-	        var arr = self.start.concat(self.end);
-	        var len = arr.length;
-	        return {
-	            next: function next() {
-	                if (index < len) {
-	                    return {
-	                        value: arr[index++],
-	                        done: false
-	                    };
-	                } else {
-	                    return {
-	                        value: arr[index++],
-	                        done: true
-	                    };
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Timer = function () {
+	    function Timer() {
+	        _classCallCheck(this, Timer);
+	    }
+
+	    _createClass(Timer, [{
+	        key: 'countdown',
+	        value: function countdown(end, update, handle) {
+	            var now = new Date().getTime();
+	            var self = this;
+	            if (now - end) {
+	                handle.call(self);
+	            } else {
+	                var last_time = end - now;
+	                var px_d = 1000 * 60 * 60 * 24;
+	                var px_h = 1000 * 60 * 60;
+	                var px_m = 1000 * 60;
+	                var px_s = 1000;
+	                var d = Math.floor(last_time / px_d);
+	                var h = Math.floor((last_time - px_d * d) / px_h);
+	                var m = Math.floor((last_time - px_d * d - px_h * h) / px_m);
+	                var s = Math.floor((last_time - px_d * d - px_h * h - m * px_m) / px_s);
+	                var r = [];
+	                if (d > 0) {
+	                    r.push('<em>' + d + '</em>\u5929');
+	                }
+	                if (r.length || h > 0) {
+	                    r.push('<em>' + h + '</em>\u65F6');
+	                }
+	                if (r.length || m > 0) {
+	                    r.push('<em>' + m + '</em>\u5206');
+	                }
+	                if (r.length || s > 0) {
+	                    r.push('<em>' + s + '</em>\u79D2');
+	                }
+	                self.last_time = r.join('');
+	                update.call(self, r.join(''));
+	                setTimeout(function () {
+	                    self.countdown(end, update, handle);
+	                }, 1000);
+	            }
+	        }
+	    }]);
+
+	    return Timer;
+	}();
+
+	exports.default = Timer;
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquerry = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"jquerry\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _jquerry2 = _interopRequireDefault(_jquerry);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Base = function () {
+	    function Base() {
+	        _classCallCheck(this, Base);
+	    }
+
+	    _createClass(Base, [{
+	        key: 'initPlayList',
+
+	        /**
+	         * 初始化玩法
+	         */
+	        value: function initPlayList() {
+	            this.play_list.set('r2', {
+	                bonus: 6,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90092\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u4E24\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">6</em>\u5143',
+	                name: '任二'
+	            }).set('r3', {
+	                bonus: 19,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90093\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u4E09\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">19</em>\u5143',
+	                name: '任三'
+	            }).set('r4', {
+	                bonus: 78,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90094\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u56DB\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">78</em>\u5143',
+	                name: '任四'
+	            }).set('r5', {
+	                bonus: 540,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90095\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u4E94\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">540</em>\u5143',
+	                name: '任五'
+	            }).set('r6', {
+	                bonus: 90,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90096\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u516D\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">90</em>\u5143',
+	                name: '任六'
+	            }).set('r7', {
+	                bonus: 26,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90097\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u4E03\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">26</em>\u5143',
+	                name: '任七'
+	            }).set('r8', {
+	                bonus: 9,
+	                tip: '\u4ECE01~11\u4E2D\u4EFB\u90095\u4E2A\u6216\u591A\u4E2A\u53F7\u7801,\u6240\u9009\u53F7\u7801\u4E0E\u5F00\u5956\u53F7\u7801\u4EFB\u610F\u516B\u4E2A\u53F7\u7801\u76F8\u540C\uFF0C\u5373\u4E2D\u5956<em class="red">9</em>\u5143',
+	                name: '任八'
+	            });
+	        }
+
+	        /**
+	         * 初始化号码
+	         */
+
+	    }, {
+	        key: 'initNumber',
+	        value: function initNumber() {
+	            for (var i = 1; i < 12; i++) {
+	                this.number.add(('' + i).padStart(2, '0'));
+	            }
+	        }
+
+	        /**
+	         * 
+	         * @param {string} omit 设置遗漏数据
+	         */
+
+	    }, {
+	        key: 'setOmit',
+	        value: function setOmit(omit) {
+	            var self = this;
+	            self.omit.clear();
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+
+	            try {
+	                for (var _iterator = omit.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var _step$value = _slicedToArray(_step.value, 2),
+	                        index = _step$value[0],
+	                        item = _step$value[1];
+
+	                    self.omit.set(index, item);
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
 	                }
 	            }
-	        };
-	    });
 
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
-
-	    try {
-	        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	            var key = _step.value;
-
-	            console.log(key);
+	            (0, _jquerry2.default)(self.omit).each(function (index, item) {
+	                (0, _jquerry2.default)(item).text(self.omit.get(index));
+	            });
 	        }
-	    } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion && _iterator.return) {
-	                _iterator.return();
+	    }, {
+	        key: 'setOpenCode',
+	        value: function setOpenCode(code) {
+	            var self = this;
+	            self.open_code.clear();
+	            var _iteratorNormalCompletion2 = true;
+	            var _didIteratorError2 = false;
+	            var _iteratorError2 = undefined;
+
+	            try {
+	                for (var _iterator2 = code.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                    var item = _step2.value;
+
+	                    self.open_code.add(item);
+	                }
+	            } catch (err) {
+	                _didIteratorError2 = true;
+	                _iteratorError2 = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                        _iterator2.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError2) {
+	                        throw _iteratorError2;
+	                    }
+	                }
 	            }
-	        } finally {
-	            if (_didIteratorError) {
-	                throw _iteratorError;
+
+	            self.updataOpenCode && self.updataOpenCode.call(self, code);
+	        }
+
+	        /**
+	         * 
+	         */
+
+	    }, {
+	        key: 'toggleCodeActive',
+	        value: function toggleCodeActive(e) {
+	            var self = this;
+	            var $cur = (0, _jquerry2.default)(e.currentTarget);
+	            $cur.toggleClass('btn-boll-active');
+	            self.getCount();
+	        }
+	    }, {
+	        key: 'changePlayNav',
+	        value: function changePlayNav(e) {
+	            var self = this;
+	            var $cur = (0, _jquerry2.default)(e.currentTarget);
+	            $cur.addClass('active').sibling().removeClass('active');
+	            self.cur_play = $cur.attr('desc').toLocalLowerCase();
+	            (0, _jquerry2.default)('#zx_sm span').html(self.play_list.get(self.cur_play).tip);
+	            (0, _jquerry2.default)('.boll-list .btn-boll').removeClass('btn-boll-active');
+	            self.getCount();
+	        }
+
+	        /**
+	         * 操作区
+	         * @param {string} e 
+	         */
+
+	    }, {
+	        key: 'assistHandle',
+	        value: function assistHandle(e) {
+	            e.preventDefault();
+	            var self = this;
+	            var $cur = (0, _jquerry2.default)(e.currentTarget);
+	            var index = $cur.index();
+	            (0, _jquerry2.default)('.boll-list .btn-boll').removeClass('btn-boll-active');
+	            if (index === 0) {
+	                (0, _jquerry2.default)('.boll-list .btn-boll').addClass('btn-boll-active');
+	            }
+	            if (index === 1) {
+	                (0, _jquerry2.default)('.boll-list .btn-boll').each(function (index, item) {
+	                    if (item.textContent - 5 > 0) {
+	                        (0, _jquerry2.default)(item).addClass('btn-boll-active');
+	                    }
+	                });
+	            }
+	            if (index === 2) {
+	                (0, _jquerry2.default)('.boll-list .btn-boll').each(function (index, item) {
+	                    if (item.textContent - 6 < 0) {
+	                        (0, _jquerry2.default)(item).addClass('btn-boll-active');
+	                    }
+	                });
+	            }
+	            if (index === 3) {
+	                (0, _jquerry2.default)('.boll-list .btn-boll').each(function (index, item) {
+	                    if (item.textContent % 2 === 1) {
+	                        (0, _jquerry2.default)(item).addClass('btn-boll-active');
+	                    }
+	                });
+	            }
+	            if (index === 4) {
+	                (0, _jquerry2.default)('.boll-list .btn-boll').each(function (index, item) {
+	                    if (item.textContent % 2 === 0) {
+	                        (0, _jquerry2.default)(item).addClass('btn-boll-active');
+	                    }
+	                });
+	            }
+	            self.getCount();
+	        }
+
+	        /**
+	         * 获得当前彩票的名称
+	         */
+
+	    }, {
+	        key: 'getName',
+	        value: function getName() {
+	            return this.name;
+	        }
+	        /**
+	         * 添加code
+	         */
+
+	    }, {
+	        key: 'addCode',
+	        value: function addCode() {
+	            var sekf = this;
+	            var $active = (0, _jquerry2.default)('.boll-list .btn-boll-active').text().match(/\d{2}/g);
+	            var active = $active ? $active.length : 0;
+	            var count = self.computeCount(active, self.cur_play);
+	            if (count) {
+	                self.addCodeItem($active.join(''), self.cur_play, self.play_list.get(self.cur_play).name, count);
 	            }
 	        }
+
+	        /**
+	         * 
+	         * @param {*} code 
+	         * @param {*} type 
+	         * @param {*} typeName 
+	         * @param {*} count 
+	         */
+
+	    }, {
+	        key: 'addCodeItem',
+	        value: function addCodeItem(code, type, typeName, count) {
+	            var self = this;
+	            var tpl = '\n        <li codes="' + type + '|' + code + '" bonus="' + count * 2 + '" count="' + count + '">\n         <div class="code">\n          <b>' + typeName + (count > 1 ? '复式' : '单式') + '</b>\n          <b class="em">' + code + '</b>\n          [' + count + '\u6CE8,<em class="code-list-money">' + count * 2 + '</em>\u5143]\n         </div>\n        </li> \n        ';
+	            (0, _jquerry2.default)(self.cart_el).append(tpl);
+	            self.getTotal();
+	        }
+	    }, {
+	        key: 'getCount',
+	        value: function getCount() {
+	            var self = this;
+	            var active = (0, _jquerry2.default)('.boll-list .btn-boll-active').length;
+	            var count = self.computeCount(active, self.cur_play);
+	            var range = self.computeBonus(active, self.cur_play);
+	            var money = count * 2;
+	            var win1 = range[0] - money;
+	            var win2 = range[1] - money;
+	            var tpl = void 0;
+	            var c1 = win1 < 0 && win2 < 0 ? Math.abs(win1) : win1;
+	            var c2 = win1 < 0 && win2 < 0 ? Math.abs(win2) : win2;
+	            if (count === 0) {
+	                tpl = '\u60A8\u9009\u4E86<b class="red">0</b> \u6CE8,\u5171<b class="red">0</b> \u5143';
+	            } else if (range[0] === range[1]) {
+	                tpl = '\u60A8\u9009\u4E86<b>' + count + '</b> \u6CE8,\u5171<b>' + count * 2 + '</b> \u5143 <em>\u82E5\u4E2D\u5956,\u5956\u91D1:\n            <strong class="red">' + range[0] + '</strong>\u5143,\u60A8\u5C06' + (win1 >= 0 ? '盈利' : '亏损') + '\n            <strong class="' + (win1 >= 0 ? 'red' : 'green') + '">' + Math.abs(win1) + '</strong>\u5143</em>';
+	            } else {
+	                tpl = '\u60A8\u9009\u4E86<b>' + count + '</b> \u6CE8,\u5171<b>' + count * 2 + '</b> \u5143 <em>\u82E5\u4E2D\u5956,\u5956\u91D1:\n            <strong class="red">' + range[0] + '</strong>\u81F3<strong class="red">' + range[1] + '</strong>\u5143,\n            \u60A8\u5C06' + (win1 < 0 && win2 < 0 ? '亏损' : '盈利') + '\n            <strong class="' + (win1 >= 0 ? 'red' : 'green') + '">' + c1 + '</strong>\n            \u81F3<strong class="' + (win1 >= 0 ? 'red' : 'green') + '">' + c2 + '</strong>\n            \u5143</em>';
+	            }
+	            (0, _jquerry2.default)('.sel_info').html(tpl);
+	        }
+
+	        /**
+	         * 
+	         */
+
+	    }, {
+	        key: 'getTotal',
+	        value: function getTotal() {}
+	    }]);
+
+	    return Base;
+	}();
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Calculate = function () {
+	    function Calculate() {
+	        _classCallCheck(this, Calculate);
 	    }
-	}
 
-	{
-	    var _arr = ['hello', 'world'];
-	    var _iteratorNormalCompletion2 = true;
-	    var _didIteratorError2 = false;
-	    var _iteratorError2 = undefined;
+	    _createClass(Calculate, [{
+	        key: 'computeCount',
 
-	    try {
-	        for (var _iterator2 = _arr[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	            var value = _step2.value;
-
-	            console.log('value:', value);
-	        }
-	    } catch (err) {
-	        _didIteratorError2 = true;
-	        _iteratorError2 = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                _iterator2.return();
+	        /**
+	         * 
+	         * @param {string} active 长度
+	         * @param {string} play_name 玩法
+	         */
+	        value: function computeCount(active, play_name) {
+	            var count = 0;
+	            var exist = this.play_list.has(play_name);
+	            var arr = new Array(active).fill('0');
+	            if (exist && play_name.at(0) === "r") {
+	                count = Calculate.combine(arr, play_name.split('')[1]);
 	            }
-	        } finally {
-	            if (_didIteratorError2) {
-	                throw _iteratorError2;
-	            }
+	            return count;
 	        }
+	        /**
+	         * 奖金范围预测
+	         * @param {*} active 当前选中的号码
+	         * @param {*} play_name 玩法
+	         */
+
+	    }, {
+	        key: 'computeBonus',
+	        value: function computeBonus(active, play_name) {
+	            var play = play_name.split('');
+	            var self = this;
+	            var arr = new Array(play[1] * 1).fill(0);
+	            var min = void 0,
+	                max = void 0;
+	            if (play[0] === 'r') {
+	                var min_active = 5 - (11 - active);
+	                if (min_active > 0) {
+	                    if (min_active - play[1] >= 0) {
+	                        arr = new Array(min_active).fill(0);
+	                        min = Calculate.combine(arr, play[1]).length;
+	                    } else {
+	                        if (play[1] - 5 > 0 && active - play[1] >= 0) {
+	                            arr = new Array(active - 5).fill(0);
+	                            min = Calculate.combine(arr, play[1] - 5).length;
+	                        } else {
+	                            min = active - play[1] > -1 ? 1 : 0;
+	                        }
+	                    }
+	                } else {
+	                    min = active - play[1] > -1 ? -1 : 0;
+	                }
+	                var max_active = Math.min(active, 5);
+	                if (play[1] - 5 > 0) {
+	                    if (active - play[1] >= 0) {
+	                        arr = new Array(active - 5).fill(0);
+	                        max = Calculate.combine(arr, play[1] - 5).length;
+	                    } else {
+	                        max = 0;
+	                    }
+	                } else if (play[1] - 5 < 0) {
+	                    arr = new Array(Math.min(active, 5)).fill(0);
+	                    max = Calculate.combine(arr, play[1]).length;
+	                } else {
+	                    max = 1;
+	                }
+	            }
+	            return [min, max].map(function (item) {
+	                return self.play_list.get(play_name).bonus;
+	            });
+	        }
+	        /**
+	         * 
+	         * @param {*} arr 参数组合运算的数组
+	         * @param {*} size 组合运算的基数
+	         */
+
+	    }], [{
+	        key: 'Combine',
+	        value: function Combine(arr, size) {
+	            var allResult = [];
+	            (function f(arr, size, result) {
+	                var arrlen = arr.length;
+	                if (size > arr.length) {
+	                    return;
+	                }
+	                if (size == arrlen) {
+	                    allResult.push([].concat(result, arr));
+	                } else {
+	                    for (var i = 0; i < arrlen; i++) {
+	                        var newResult = [].concat(result);
+	                        newResult.push(arr[i]);
+	                        if (size === 1) {
+	                            allResult.push(newResult);
+	                        } else {
+	                            var newArr = [].concat(arr);
+	                            newArr.splice(0, i + 1);
+	                            f(newArr, size - 1, newResult);
+	                        }
+	                    }
+	                }
+	            })(arr, size, []);
+	        }
+	    }]);
+
+	    return Calculate;
+	}();
+
+	exports.default = Calculate;
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"jquery\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Interface = function () {
+	    function Interface() {
+	        _classCallCheck(this, Interface);
 	    }
-	}
+
+	    _createClass(Interface, [{
+	        key: 'getOmit',
+
+	        /**
+	         * 获得遗漏数据
+	         * @param {string} issue [当前期号]
+	         */
+	        value: function getOmit(issue) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/omit',
+	                    data: {
+	                        issue: issue
+	                    },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        self.setOmit(res.data);
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	        /**
+	         * 
+	         */
+
+	    }, {
+	        key: 'getOpenCode',
+	        value: function getOpenCode(issuse) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/opencode',
+	                    data: { issuse: issuse },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        self.setOpenCode(res.data);
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	        /**
+	         * 获得状态
+	         * @param {int} issuse 期号
+	         */
+
+	    }, {
+	        key: 'getState',
+	        value: function getState(issuse) {
+	            var self = this;
+	            return new Promise(function (resolve, reject) {
+	                _jquery2.default.ajax({
+	                    url: '/get/state',
+	                    data: { issuse: issuse },
+	                    dataType: 'json',
+	                    success: function success(res) {
+	                        resolve.call(self, res);
+	                    },
+	                    error: function error(err) {
+	                        reject.call(err);
+	                    }
+	                });
+	            });
+	        }
+	    }]);
+
+	    return Interface;
+	}();
+
+	exports.default = Interface;
 
 /***/ })
 /******/ ]);

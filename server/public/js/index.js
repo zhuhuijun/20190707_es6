@@ -9721,6 +9721,131 @@
 
 /***/ }),
 /* 337 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Calculate = function () {
+	    function Calculate() {
+	        _classCallCheck(this, Calculate);
+	    }
+
+	    _createClass(Calculate, [{
+	        key: 'computeCount',
+
+	        /**
+	         * 
+	         * @param {string} active 长度
+	         * @param {string} play_name 玩法
+	         */
+	        value: function computeCount(active, play_name) {
+	            var count = 0;
+	            var exist = this.play_list.has(play_name);
+	            var arr = new Array(active).fill('0');
+	            if (exist && play_name.at(0) === "r") {
+	                count = Calculate.combine(arr, play_name.split('')[1]);
+	            }
+	            return count;
+	        }
+	        /**
+	         * 奖金范围预测
+	         * @param {*} active 当前选中的号码
+	         * @param {*} play_name 玩法
+	         */
+
+	    }, {
+	        key: 'computeBonus',
+	        value: function computeBonus(active, play_name) {
+	            var play = play_name.split('');
+	            var self = this;
+	            var arr = new Array(play[1] * 1).fill(0);
+	            var min = void 0,
+	                max = void 0;
+	            if (play[0] === 'r') {
+	                var min_active = 5 - (11 - active);
+	                if (min_active > 0) {
+	                    if (min_active - play[1] >= 0) {
+	                        arr = new Array(min_active).fill(0);
+	                        min = Calculate.combine(arr, play[1]).length;
+	                    } else {
+	                        if (play[1] - 5 > 0 && active - play[1] >= 0) {
+	                            arr = new Array(active - 5).fill(0);
+	                            min = Calculate.combine(arr, play[1] - 5).length;
+	                        } else {
+	                            min = active - play[1] > -1 ? 1 : 0;
+	                        }
+	                    }
+	                } else {
+	                    min = active - play[1] > -1 ? -1 : 0;
+	                }
+	                var max_active = Math.min(active, 5);
+	                if (play[1] - 5 > 0) {
+	                    if (active - play[1] >= 0) {
+	                        arr = new Array(active - 5).fill(0);
+	                        max = Calculate.combine(arr, play[1] - 5).length;
+	                    } else {
+	                        max = 0;
+	                    }
+	                } else if (play[1] - 5 < 0) {
+	                    arr = new Array(Math.min(active, 5)).fill(0);
+	                    max = Calculate.combine(arr, play[1]).length;
+	                } else {
+	                    max = 1;
+	                }
+	            }
+	            return [min, max].map(function (item) {
+	                return self.play_list.get(play_name).bonus;
+	            });
+	        }
+	        /**
+	         * 
+	         * @param {*} arr 参数组合运算的数组
+	         * @param {*} size 组合运算的基数
+	         */
+
+	    }], [{
+	        key: 'Combine',
+	        value: function Combine(arr, size) {
+	            var allResult = [];
+	            (function f(arr, size, result) {
+	                var arrlen = arr.length;
+	                if (size > arr.length) {
+	                    return;
+	                }
+	                if (size == arrlen) {
+	                    allResult.push([].concat(result, arr));
+	                } else {
+	                    for (var i = 0; i < arrlen; i++) {
+	                        var newResult = [].concat(result);
+	                        newResult.push(arr[i]);
+	                        if (size === 1) {
+	                            allResult.push(newResult);
+	                        } else {
+	                            var newArr = [].concat(arr);
+	                            newArr.splice(0, i + 1);
+	                            f(newArr, size - 1, newResult);
+	                        }
+	                    }
+	                }
+	            })(arr, size, []);
+	        }
+	    }]);
+
+	    return Calculate;
+	}();
+
+	exports.default = Calculate;
+
+/***/ }),
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9822,12 +9947,6 @@
 	}();
 
 	exports.default = Interface;
-
-/***/ }),
-/* 338 */
-/***/ (function(module, exports) {
-
-	"use strict";
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,4 @@
 import './lottery/timer';
 import './lottery/base';
-import './lottery/calcaulate';
+import './lottery/calculate';
 import './lottery/interface';

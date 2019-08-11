@@ -13,6 +13,7 @@
 ```
 cnpm install babel-polyfill --save-dev
 cnpm install babel-plugin-transform-decorators-legacy --save-dev
+cnpm install jquery --save-dev
 ```
 
 ```

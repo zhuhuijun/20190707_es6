@@ -1,4 +1,4 @@
-import $ from 'jquerry';
+import $ from 'jquery';
 class Base {
     /**
      * 初始化玩法
@@ -174,11 +174,11 @@ class Base {
         let self = this;
         const tpl = `
         <li codes="${type}|${code}" bonus="${count * 2}" count="${count}">
-         <div class="code">
-          <b>${typeName}${count > 1 ? '复式' : '单式'}</b>
-          <b class="em">${code}</b>
-          [${count}注,<em class="code-list-money">${count * 2}</em>元]
-         </div>
+        <div class="code">
+        <b>${typeName}${count > 1 ? '复式' : '单式'}</b>
+        <b class="em">${code}</b>
+        [${count}注,<em class="code-list-money">${count * 2}</em>元]
+        </div>
         </li> 
         `;
         $(self.cart_el).append(tpl);
@@ -214,11 +214,55 @@ class Base {
         $('.sel_info').html(tpl);
     }
 
-
     /**
-     * 
+     * [getTotal 计算总金额]
+     * @return {[type]} [description]
      */
     getTotal() {
+        let count = 0;
+        $('.codelist li').each(function (index, item) {
+            count += $(item).attr('count') * 1;
+        });
+        $('#count').text(count);
+        $('#money').text(count * 2);
+    }
 
+    /**
+     * 生成随机数
+     * @param  {[type]} num [随机数的个数]
+     * @return {[type]}     [description]
+     */
+    getRandom(num) {
+        let arr = [];
+        let index;
+        let number = Array.from(this.number);
+        while (num--) {
+            index = Number.parseInt(Math.random() * number.length);
+            arr.push(number[inde]);
+            number.splice(index, 1);
+        }
+        let resNum = arr.join(' ');
+        console.info(resNum);
+        return resNum;
+    }
+
+    getRandomCode(e) {
+        e.preventDefault();
+        let self = this;
+        let num = e.currentTarget.getAttribute('count');
+        let play = self.cur_play.math(/\d+/g)[0];
+        if ('0' === num) {
+            $(self.cart_el).html('');
+        } else {
+            for (let i = 0; i < num; i++) {
+                self.addCodeItem(
+                    self.getRandom(play)
+                    , self.cur_play
+                    , self.play_list.get(self.cur_play).name
+                    , 1);
+            }
+        }
     }
 }
+
+export default Base

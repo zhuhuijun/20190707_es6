@@ -34,3 +34,5 @@ import 'babel-polyfill';
 // var test = new Test();
 // document.body.innerHTML = test.a;
 import Lottery from './lottery';
+const lott = new Lottery();
+console.log(lott);

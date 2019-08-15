@@ -90,8 +90,8 @@ class Base {
     changePlayNav(e) {
         let self = this;
         let $cur = $(e.currentTarget);
-        $cur.addClass('active').sibling().removeClass('active');
-        self.cur_play = $cur.attr('desc').toLocalLowerCase();
+        $cur.addClass('active').siblings().removeClass('active');
+        self.cur_play = $cur.attr('desc').toLocaleLowerCase();
         $('#zx_sm span').html(self.play_list.get(self.cur_play).tip);
         $('.boll-list .btn-boll').removeClass('btn-boll-active');
         self.getCount();
@@ -154,12 +154,12 @@ class Base {
      * 添加code
      */
     addCode() {
-        let sekf = this;
+        let self = this;
         let $active = $('.boll-list .btn-boll-active').text().match(/\d{2}/g);
         let active = $active ? $active.length : 0;
         let count = self.computeCount(active, self.cur_play);
         if (count) {
-            self.addCodeItem($active.join(''), self.cur_play, self.play_list.get(self.cur_play).name, count);
+            self.addCodeItem($active.join(' '), self.cur_play, self.play_list.get(self.cur_play).name, count);
         }
     }
 
@@ -238,7 +238,7 @@ class Base {
         let number = Array.from(this.number);
         while (num--) {
             index = Number.parseInt(Math.random() * number.length);
-            arr.push(number[inde]);
+            arr.push(number[index]);
             number.splice(index, 1);
         }
         let resNum = arr.join(' ');
@@ -250,7 +250,7 @@ class Base {
         e.preventDefault();
         let self = this;
         let num = e.currentTarget.getAttribute('count');
-        let play = self.cur_play.math(/\d+/g)[0];
+        let play = self.cur_play.match(/\d+/g)[0];
         if ('0' === num) {
             $(self.cart_el).html('');
         } else {

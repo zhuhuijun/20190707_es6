@@ -28,7 +28,7 @@ class Lottery extends mix(Base,Calculate,Timer,Interface){
         super();
         this.name = name;
         this.cname = cname;
-        this.issue = issuse;
+        this.issue = issue;
         this.state = state;
         this.el='';
         this.omit=new Map();
@@ -82,11 +82,11 @@ class Lottery extends mix(Base,Calculate,Timer,Interface){
      */
     initEvent(){
         let self =this;
-        $('#plays').on('click','li',self.playChangeNav.bind(self));
+        $('#plays').on('click','li',self.changePlayNav.bind(self));
         $('.boll-list').on('click','.btn-boll',self.toggleCodeActive.bind(self));
         $('#confirm_sel_code').on('click',self.addCode.bind(self));
         $('.dxjo').on('click','li',self.assistHandle.bind(self));
-        $('.qkmethod').on('click','btn-middle',self.getRandomCode.bind(self));
+        $('.qkmethod').on('click','.btn-middle',self.getRandomCode.bind(self));
     }
 }
 
